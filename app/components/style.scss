@@ -1,0 +1,294 @@
+$xl: 87.5em; // 4k and hi-res desktop
+$lg: 60em; // 1080 and hi-res laptops
+$med: 40em; // hi-res tablets and low-res laptops
+$sm: 28em; // mobile and low-res tablets
+$xs: 20em; // mobile only
+
+$bg-color: #78808e;
+$main-white: #f3f4f6;
+$main-light-gray: #9ba1ab;
+$placeholder-gray: #bdc0c7;
+
+$bold: 700; //font-weight
+
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@1,300&display=swap');
+$merriweather: 'Merriweather', serif;
+
+$magnifImg: url('https://www.iconsdb.com/icons/download/white/magnifying-glass-3-24.png');
+
+
+@mixin responsive($query) {
+    @media ( min-width: + $query ) {
+        @content;
+    }
+}
+
+@mixin page-break-inside($rule) {
+    -webkit-column-break-inside: $rule; /* Chrome, Safari, Opera */
+       page-break-inside: $rule; /* Firefox */
+            break-inside: $rule; /* IE 10+ */
+}
+
+body{
+  font-family: Helvetica, Sans-Serif;
+  text-transform: uppercase;
+  color:$main-white;
+
+  font-weight:300;
+}
+
+div{
+  display:inline;
+  float:left;
+}
+
+div.main {
+    background-color: $bg-color;
+    width: $lg;
+    //height: $med/2;
+
+    position: static;
+    transform: translate(0, 0);
+    margin-top: 0;
+
+    padding:3em;
+
+
+    @include responsive( $xs ) {
+      width: $xs;
+    }
+    @include responsive( $sm ) {width: $sm;}
+    @include responsive( $med ) {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: $med;
+
+      margin: 2em auto 3em auto;
+    }
+}
+
+.main:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+h1{
+  font-family: $merriweather;
+  text-transform: none;
+  color:#fefefe;
+}
+
+h2{
+  background:linear-gradient(0deg, #818fa2, #b4bdc9);
+  font-weight:500;
+  text-align:center;
+  padding: 0.25em 0;
+}
+
+
+p.lorem{
+  color:#88e0d6;
+  text-transform: none;
+}
+
+.itemAppCols{
+  position: relative;
+  width: 100%;
+}
+
+.itemAppCols:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.controls{
+  float: left;
+  width: 50%;
+  height: 100%;
+  min-height: 300px;
+
+  @include responsive( $med ) {
+    width: 33.33%;
+  }
+}
+
+.itemColumns{
+  float: left;
+  width: 50%;
+  @include responsive( $med ) {
+    width: 66.66%;
+  }
+}
+
+.itemColumns div{
+  width:100%;
+}
+
+input, select, textarea, button{
+    -ms-box-sizing:border-box;
+    -moz-box-sizing:border-box;
+    box-sizing:border-box;
+    -webkit-box-sizing:border-box;
+}
+input, select, textarea{
+  text-indent: 1em;
+}
+
+
+input{
+  width: inherit;
+  height: 4em;
+  border: 3px solid $main-white;
+  background-color: $main-light-gray;
+  color: $placeholder-gray;
+  display: block;
+}
+
+select {
+  text-transform: uppercase;
+
+  margin-top:0.5em;
+  width: 100%;
+  height: 4em;
+  cursor: pointer;
+  border-radius: 0;
+  background-color: $main-light-gray;
+  border: 3px solid $main-white;
+  color: $placeholder-gray;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Adding transition effect */
+  transition: color 0.3s ease, background-color 0.3s ease, border-bottom-color 0.3s ease;
+
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' version='1.1' height='10px' width='15px'%3E%3Ctext x='0' y='10' fill='white'%3E%E2%96%BE%3C/text%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-size: 1.5EM 1EM;
+  background-position: right center;
+  background-clip: border-box;
+  -moz-background-clip: border-box;
+  -webkit-background-clip: border-box;
+}
+
+select:hover,
+select:focus {
+  color: $main-white;
+  background-color: $bg-color;
+}
+
+button{
+  margin-top: 1em;
+  width:100%;
+  height: 4em;
+  border: 3px solid $main-white;
+  background-color: $bg-color;
+  color: $main-white;
+  text-align:center;
+
+  font-weight: $bold;
+}
+
+button:hover{
+
+  background-color: $main-white;
+  color: $bg-color;
+  text-align:center;
+}
+
+
+
+.searchBox{
+  width:inherit;
+  height:3em;
+
+  background-image: $magnifImg;
+  background-repeat: no-repeat;
+  background-position: 95% 50%;
+}
+
+.search{
+  position: absolute;
+  bottom:0;
+  left:0;
+
+  font-weight: $bold;
+}
+
+::placeholder{
+  text-transform: uppercase;
+  margin-left:1em;
+}
+
+div.column{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 5px solid white;
+  box-sizing:border-box;
+
+  @include responsive( $med ) {
+      width: 50%;
+  }
+}
+div.row {
+  width:100%;
+  float:left;
+
+  background-color: $main-white;
+  color: $bg-color;
+  padding: 0.5em 0;
+}
+
+div.row span{
+    margin-left: 1em;
+    font-size:14pt;
+}
+
+.row:nth-child(odd){
+  background-color: $bg-color;
+  color: $main-white;
+}
+
+button.delButton{
+  width: 2em;
+  height: 2em;
+  font-size: 12pt;
+  border:2px solid $bg-color;
+  border-radius: 5px;
+  color: $bg-color;
+  text-align: center;
+  background-color: $main-white;
+
+  float:right;
+  margin:0 1em 0 0;
+}
+button.delButton:hover{
+  background-color: $bg-color;
+  color: $main-white;
+}
+
+.row:nth-child(odd) .delButton{
+  background-color: $bg-color;
+  color: $main-white;
+  border:2px solid $main-white;
+}
+.row:nth-child(odd) .delButton:hover{
+  background-color: $main-white;
+  color: $bg-color;
+}
+
+div.rowHeader{
+  background:linear-gradient(0deg, #818fa2, #b4bdc9);
+  font-weight:500;
+  text-align:center;
+  padding: 0.5em 0;
+
+  width:100%;
+  float:left;
+}
